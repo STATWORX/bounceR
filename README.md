@@ -2,7 +2,7 @@
 
 ***
 
-The R package featauR provides methods and tools for automated feature selection for Machine Learning models. The methods are fit for situation in which the data scientists faces an exceedingly high number of features. Even if the number of features far exceeds the number of observations, the methods are equipped to reduce dimensionality of the feature space.
+The R package bounceR provides methods and tools for automated feature selection for Machine Learning models. The methods are fit for situation in which the data scientists faces an exceedingly high number of features. Even if the number of features far exceeds the number of observations, the methods are equipped to reduce dimensionality of the feature space.
 
 The package leverages two main tools for feature selection. First, a bunch of simple filtering methods are implemented. Filtering method in general provide simple heuristics to pre-reduce the feature space, by applying mostly bivariate comparisons. Second, the package contains wrapper methods for feature selection. Wrapper methods in general are iterative search algorithms. The wrapper methods implemented here leverage componentwise boosting as a weak learners.
 
@@ -55,8 +55,7 @@ You can install the development version from Github.
     # WRAPPER METHODS ---------------------------------------------------------
     # For a rather rigorous and more importantly model oriented selection, we can use wrapper methods to produce optimal
     # model equations, based on stability criteria.
-
-    # Genetic Boosting Ensemble
+    
     test_ge <- featureSelection(data = train_df,
                                 target = "y",
                                 selection = selectionControl(n_rounds = 100,
