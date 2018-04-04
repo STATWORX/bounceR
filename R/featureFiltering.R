@@ -8,7 +8,7 @@
 #' @param method a string indicating the method used for filtering: "cc", "mrmr"
 #' @param returning a string indicating the return: "names", "data"
 #'
-#' @details This function contains filtering methods to reduce a potential feature space.
+#' @details This function implements filtering methods to reduce a potential feature space.
 #'          Most filtering methods use bivariate or multivariate statistical metrics to
 #'          sort out irrelevant features. Hence, the methods are pretty straight forward.
 #'          Currently, there are two methods implemented in this function.
@@ -20,6 +20,9 @@
 #'          minimizing the collinearity within the feature space.
 #'          MRMR is quite similar to the CC-Filter, however, it is an incremental filtering method,
 #'          which tries to find mutually exclusive features by considering the joint probability density function.
+#'          The method "mrmr" is a high-level wrapper for the functions implemented in \code{\link{mRMRe}}. For
+#'          further details consider consider the documentation of \code{\link{mRMRe}} as well as 
+#'          the referenced paper.
 #'
 #' @return Either a vector of names of a data.frame object depending on the returning argument
 #' @import dplyr mRMRe
