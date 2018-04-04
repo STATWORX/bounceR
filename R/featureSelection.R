@@ -26,7 +26,6 @@
 #' # Genetic Boosting Ensemble
 #' test_ge <- featureSelection(data = test_df,
 #'                             target = "y",
-#'                             method = "geneticboost",
 #'                             selection = selectionControl(n_rounds = 10,
 #'                                                          n_mods = 100,
 #'                                                          p = 30,
