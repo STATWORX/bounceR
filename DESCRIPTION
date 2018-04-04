@@ -1,0 +1,30 @@
+Package: bounceR
+Title: Automated Feature Selection for Machine Learning
+Version: 0.1
+Author: c(person("Lukas", "Stroemsdoerfer", email = "lukas.stroemsdoerfer@statworx.com", role = c("aut", "cre")),
+            person("Andre", "Bleier", email = "andre.bleier@statworx.com", role = c("aut", "cre")),
+            person("Lea", "Waniek", email = "lea.waniek@statworx.com", role = c("ctb", "cre")),
+            person("Fabian", "Mueller", email = "fabian.mueller@statworx.com", role = c("ctb", "cre")),
+            person("Tobias", "Krabel", email = "tobias.krabel@statworx.com", role = c("ctb", "cre")),
+            person("Jakob", "Gepp", email = "jakob.gepp@statworx.com", role = c("ctb", "cre")))
+Description: This package entails both, wrapper and filter methods for automated
+             feature selection. The methods are particulary fit for high dimensional
+             feature spaces, yet disproportionally little observations..
+Maintainer: Lukas Stroemsdoerfer <lukas.stroemsdoerfer@statworx.com>
+Depends: R (>= 3.4.3)
+Imports: methods, 
+         dplyr,
+         reshape2, 
+         ggplot2, 
+         mRMRe,
+         np,
+         mboost,
+         strucchange, 
+         doMC,
+         doParallel,
+         foreach
+Namespace: bounceR
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
