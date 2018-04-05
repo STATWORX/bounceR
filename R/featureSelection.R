@@ -147,7 +147,7 @@ if(is.null(selection[["penalty"]])) selection[["penalty"]] <- 0.3
 if(is.null(selection[["reward"]])) selection[["reward"]] <- 0.2
 
 # save default p
-original_p <- selection[["p"]]
+original_p <- min(2, floor(sqrt(selection[["p"]])))
 
 # message
 if(verbose){
@@ -210,7 +210,7 @@ if(length(feature_names) == 0){
     } else if(bootstrap == "regular"){
 
       # regular bootstrap
-      df_mirrored_model <- df_mirrored[sample(nrow(df_mirrored), size = nrow(df_mirrored), replace = T),
+      df_mirrored_model <- df_mirrored[sample(1:nrow(df_mirrored), size = nrow(df_mirrored), replace = T),
                                        names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], selection[["p"]], replace = F))]
 
     } else if(bootstrap == "moving"){
