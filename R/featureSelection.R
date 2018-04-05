@@ -351,7 +351,7 @@ if(verbose){
 important_features <- important_features %>%
     dplyr::bind_rows(.) %>%
     dplyr::group_by(feature) %>%
-    dplyr::summarise(freq = mean(freq)) %>%
+    dplyr::summarise(freq = mean(freq, na.rm = TRUE)) %>%
     as.data.frame() %>%
     dplyr::arrange(dplyr::desc(freq)) %>%
     dplyr::as_tibble() %>%
