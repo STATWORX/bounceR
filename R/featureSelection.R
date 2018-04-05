@@ -284,7 +284,7 @@ if(length(feature_names) == 0){
       model <- model[mboost::mstop(aic_corr)]
 
     }
-
+    
     # output features
     output_feature_names <- gsub("[\\(\\)]", "", unlist(regmatches(names(summary(model)$selprob), gregexpr("\\(.*?\\)", names(summary(model)$selprob)))))
 
