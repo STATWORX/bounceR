@@ -199,24 +199,28 @@ if(length(feature_names) == 0){
     if(nrow(stability_matrix) <= original_p) break
 
     # failsafe if df_mirrored gets to small
-    if(selection[["p"]] >= ncol(df_mirrored)) selection[["p"]] <- ncol(df_mirrored) - 1
+    if(selection[["p"]] >= ncol(df_mirrored)){
+      p <- ncol(df_mirrored) - 1
+    } else {
+        p <- selection[["p"]]
+    }
 
     # check for bootstrap mehod
     if(bootstrap == "none"){
 
       # no bootstrap
-      df_mirrored_model <- df_mirrored[, names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], selection[["p"]], replace = F))]
+      df_mirrored_model <- df_mirrored[, names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], p, replace = F))]
 
     } else if(bootstrap == "regular"){
 
       # regular bootstrap
       df_mirrored_model <- df_mirrored[sample(1:nrow(df_mirrored), size = nrow(df_mirrored), replace = T),
-                                       names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], selection[["p"]], replace = F))]
+                                       names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], p, replace = F))]
 
     } else if(bootstrap == "moving"){
 
       # moving block bootstrap
-      df_mirrored_model <- mbb(data = df_mirrored[, names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], selection[["p"]], replace = F))],
+      df_mirrored_model <- mbb(data = df_mirrored[, names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], p, replace = F))],
                                target = tagret,
                                seed = (i + ii))
 
