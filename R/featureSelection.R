@@ -146,6 +146,9 @@ if(is.null(selection[["penalty"]])) selection[["penalty"]] <- 0.3
 # set default: reward
 if(is.null(selection[["reward"]])) selection[["reward"]] <- 0.2
 
+# save default p
+original_p <- selection[["p"]]
+
 # message
 if(verbose){
   cat("Starting Genetic Algorithm...")
@@ -185,12 +188,15 @@ if(length(feature_names) == 0){
 
   # iterate over models
   for(ii in seq(selection[["n_mods"]])){
-
+    
     # set random seed
     set.seed(i + ii)
 
     # check if there is still something left
     if(class(df_mirrored) != "data.frame") break
+    
+    # check if stability matrix is getting too small
+    if(nrow(stability_matrix) <= original_p) break
 
     # failsafe if df_mirrored gets to small
     if(selection[["p"]] >= ncol(df_mirrored)) selection[["p"]] <- ncol(df_mirrored) - 1
@@ -364,7 +370,7 @@ break_data <- tryCatch({data.frame(freq = important_features$freq,
 
 # optimal formula: break analysis
 n_features <- tryCatch({strucchange::breakpoints(freq ~ obs,
-                                    data = break_data[1:max_feature, nrow(break_data), ],
+                                    data = break_data[1:p, nrow(break_data), ],
                                     h = max(0.05*nrow(data), 5),
                                     breaks = 1)$breakpoints},
                        error = function(e){return(floor(sqrt(nrow(data))))})
