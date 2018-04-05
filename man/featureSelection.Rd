@@ -39,7 +39,13 @@ a list with the following entries
 Automated Feature Selection for Machine Learning Models with Boosting Ensembles
 }
 \details{
-SOME DETAILS
+This function implements a feature selection algorithm leveraging the ideas from backpropagation and randomness. Each n_rounds round a new random 
+stability matrix with two columns is initialized. The first column has the name of the feature and the second a stability score indicating the empirical
+relevance score of a feature. Each of these n_rounds random matrices is then updated over the course of n_mods componentwise boosting models on 
+random subsets of the feature space. The updating process works as follows: if a feature was contained in a subset, but was not selected in the boosting,
+it's score in the randomly intialized matrix is reduced by the amount of the penalty. If a feature was contained in a subset and was selected in a boosting, 
+it's score in the randomly intialized matrix is increased by the amount of the reward. After n_mods models in each n_rounds rounds the n_rounds updated 
+stability matrices are combined by simply averaging the scores for each feature across all matrices.
 }
 \examples{
 \dontrun{
@@ -49,7 +55,6 @@ test_df <- sim_data()
 # Genetic Boosting Ensemble
 test_ge <- featureSelection(data = test_df,
                             target = "y",
-                            method = "geneticboost",
                             selection = selectionControl(n_rounds = 10,
                                                          n_mods = 100,
                                                          p = 30,

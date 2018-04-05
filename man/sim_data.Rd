@@ -4,7 +4,7 @@
 \alias{sim_data}
 \title{Simulating Classification and Regression Data}
 \usage{
-sim_data(n = 1000, modelvars = 10, noisevars = 100, model_sd = 4,
+sim_data(n = 1000, modelvars = 50, noisevars = 100, model_sd = 4,
   noise_sd = 4, epsilon_sd = 4, outcome = "regression", cutoff = NULL)
 }
 \arguments{
