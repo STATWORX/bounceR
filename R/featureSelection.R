@@ -141,13 +141,13 @@ if(is.null(selection[["n_mods"]])) selection[["n_mods"]] <- floor((1 + ncol(data
 if(is.null(selection[["p"]])) selection[["p"]] <- floor(sqrt(sqrt(ncol(data) * (1 + (nrow(data)/sqrt(ncol(data)))))))
 
 # set default: penalty
-if(is.null(selection[["penalty"]])) selection[["penalty"]] <- 0.3
+if(is.null(selection[["penalty"]])) selection[["penalty"]] <- 0.2
 
 # set default: reward
-if(is.null(selection[["reward"]])) selection[["reward"]] <- 0.2
+if(is.null(selection[["reward"]])) selection[["reward"]] <- 0.1
 
 # save default p
-original_p <- min(2, floor(sqrt(selection[["p"]])))
+original_p <- max(5, floor(sqrt(selection[["p"]])))
 
 # message
 if(verbose){
@@ -332,8 +332,8 @@ if(length(feature_names) == 0){
 }
 
 # scale the frequency between 0 and 1
-stability_matrix$freq <- (stability_matrix$freq - min(stability_matrix$freq)) /
-                          diff(range(stability_matrix$freq))
+#stability_matrix$freq <- (stability_matrix$freq - min(stability_matrix$freq)) /
+#                          diff(range(stability_matrix$freq))
 
 # return
 return(stability_matrix)
