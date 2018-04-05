@@ -18,7 +18,7 @@
 #'
 #' @export
 sim_data <- function(n = 1000,
-                     modelvars = 10,
+                     modelvars = 50,
                      noisevars = 100,
                      model_sd = 4,
                      noise_sd = 4,
