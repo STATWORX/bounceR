@@ -30,6 +30,11 @@
     top: 30;
     left: 20;
 }
+.bouncer_gif {
+    position: fixed;
+    top: 25%;
+    left: 20%;
+}
 .clients_insert {
     position: fixed;
     top: 21%;
@@ -98,7 +103,7 @@ title: false
 
   <div class="heading" style="margin-left:30px">
   <SPAN STYLE="font-size:180%;">
-  <code>featauR</code>:
+  <code>bounceR</code>:
   </SPAN>
   <SPAN STYLE="font-size:130%;color=black;">
   Automated Feature Selection for Machine Learning Algorithms
@@ -240,9 +245,18 @@ The package contains a variety of useful functions surrounding the topic of feat
     + <code><font color="blue">summary.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 summary method for the object class "sel_obj"</SPAN>
     + <code><font color="blue">builder</font></code>: <SPAN STYLE="font-size:70%"> method to extract a formula with n features from a "sel_obj"</SPAN>
 
+About Our Algorithm: Goal
+========================================================
+Find a feature selection algorithm that can distinguish relevant from irrelevant features without overfitting the training data.
+<div class="bouncer_gif">
+  <div style="margin-right:0px;margin-top:0px;">
+    <img style="margin:0px; box-shadow:none;" width="1000", src="figures/bounceR.gif"></img>
+  </div>
+</div>
+
 About Our Algorithm: Idea
 ========================================================
-Each round a random feature importance distribution is initialized. Over the course of $m$ models, the distribution is adjusted. Essentially our code follows the algorithm:
+Each round a random stability score distribution is initialized. Over the course of $m$ models, the distribution is adjusted. Essentially our code follows the algorithm:
 
 <div class="workflow">
   <div style="margin-right:0px;margin-top:0px;">
@@ -250,12 +264,12 @@ Each round a random feature importance distribution is initialized. Over the cou
   </div>
 </div>
 
-About Our Algorithm: Pseudo
+About Our Algorithm: Procedure
 ========================================================
 Essentially we take bits form cool algorithms and put them together. For once, we leverage the complete randomness of random forests. Additionally we apply a somewhat transformed idea of backpropagation.
 
 <div class="workflow">
-  <div style="margin-right:0px;margin-top:0px;">
+  <div style="margin-right:0px;margin-top:-25px;">
     <img style="margin:0px 0px 0px -100px; box-shadow:none;" width="1400", src="figures/pseudo_algo.png"></img>
   </div>
 </div>
@@ -286,15 +300,9 @@ About The End
 ========================================================
 If you have any questions, are interested or have an idea, just contact us!
 
-<div class="gif_insert">
-  <div style="margin-right:0px;margin-top:0px;">
-    <img style="margin:0px; box-shadow:none;" width="800", src="figures/end.gif"></img>
+<div class="trump">
+  <div style="margin-left:-20px;margin-top:0px;">
+    <img style="margin:0px; box-shadow:none;" width="1200", src="figures/end.gif"></img>
   </div>
 </div>
 
-<div class="clients_insert">
-  <div><SPAN STYLE="font-size:70%;">Our Package:</SPAN></div>
-  <div style="margin-right:0px;margin-top:0px;">
-    <img style="margin:0px; box-shadow:none;" width="500", src="figures/bounceR.gif"></img>
-  </div>
-</div>
