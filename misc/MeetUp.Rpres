@@ -164,17 +164,21 @@ Data science projects often follow a similiar structure. At the very beginning, 
 
 About Feature Selection: Problem
 ========================================================
-Feature Selection is one of the most fundamental tasks in the data science workflow:
 
-  * Why do we need feature selection?
-    + Features are <font color="grey">all the information</font> you have to predict your target
-    + With too many features most models <font color="grey">cannot either be identified</font> or are noisy
-    + The right combination of features <font color="grey">boosts performance</font>, not the algorithm
-  * How can we select features?
-    + <font color="grey">Manually testing</font> all feature set combinations (not cool)
-    + Use <font color="grey">bivariate metrics</font> like correlations to filter our relevant features (a little cooler)
-    + <font color="grey">Loop over all feature set combinations</font> and evaluate them based on performance gain (a bit cooler)
-    + Use our <font color="grey">package</font> (super cool #nobias)
+<div class="workflow">
+  <div style="margin-right:0px;margin-top:0px;">
+    <img style="margin:-100px 0px 0px 0px; box-shadow:none;" width="1600", height="600",  src="figures/why_fs.svg"></img>
+  </div>
+</div>
+
+About Feature Selection: Problem
+========================================================
+
+<div class="workflow">
+  <div style="margin-right:0px;margin-top:0px;">
+    <img style="margin:-100px 0px 0px 0px; box-shadow:none;" width="1600", height="600",  src="figures/how_fs.svg"></img>
+  </div>
+</div>
 
 About Feature Selection: Solutions?
 ========================================================
@@ -182,7 +186,7 @@ Currently there are two main ways to select the relevant features out of the ent
 
 <div class="workflow">
   <div style="margin-right:0px;margin-top:0px;">
-    <img style="margin:0px 0px 0px -100px; box-shadow:none;" width="1400", src="figures/methods.svg"></img>
+    <img style="margin:0px 0px 0px -100px; box-shadow:none;" width="1400", src="figures/fs_ad_disad.svg"></img>
   </div>
 </div>
 
@@ -205,44 +209,6 @@ Componentwise Gradient Boosting is a boosting ensemble algorithm allowing to dis
   </div>
 </div>
 
-About Our Package: Installation
-========================================================
-The package is still under developmet and not yet listed on CRAN. However you can get it from GitHub.
-
-```{r install, echo = TRUE, eval = FALSE}
-# load devtools
-install.packages(devtools)
-library(devtools)
-
-# download from our public repo
-devtools::install_github("STATWORX/bounceR")
-
-# source it
-library(bounceR)
-```
-
-If you find any bugs or spot anything that is not super convenient, just open an issue.
-<div class="issues">
-  <div style="margin-right:0px;margin-top:0px;">
-    <img style="margin:0px; box-shadow:none;" width="1400", src="figures/issues.png"></img>
-  </div>
-</div>
-
-About Our Package: Content
-========================================================
-The package contains a variety of useful functions surrounding the topic of feature selection, such as:
-
-  * Convenience:
-    + <code><font color="blue">sim_data</font></code>: <SPAN STYLE="font-size:70%">a function simulating regression and classification data, where the true feature space is known</SPAN>
-  * Filtering:
-    + <code><font color="blue">featureFiltering</font></code>: <SPAN STYLE="font-size:70%">a function implementing several popular filter methods for feature selection</SPAN>
-  * Wrapper:
-    + <code><font color="blue">featureSelection</font></code>: <SPAN STYLE="font-size:70%">a function implementing our home grown algorithm for feature selection</SPAN>
-  * Methods:
-    + <code><font color="blue">print.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 priniting method for the object class "sel_obj"</SPAN>
-    + <code><font color="blue">plot.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 ploting method for the object class "sel_obj"</SPAN>
-    + <code><font color="blue">summary.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 summary method for the object class "sel_obj"</SPAN>
-    + <code><font color="blue">builder</font></code>: <SPAN STYLE="font-size:70%"> method to extract a formula with n features from a "sel_obj"</SPAN>
 
 About Our Algorithm: Goal
 ========================================================
@@ -294,6 +260,45 @@ selection <- featureSelection(data = train_df,
                               n_cores = 6)
 
 ```
+
+About Our Package: Installation
+========================================================
+The package is still under developmet and not yet listed on CRAN. However you can get it from GitHub.
+
+```{r install, echo = TRUE, eval = FALSE}
+# load devtools
+install.packages(devtools)
+library(devtools)
+
+# download from our public repo
+devtools::install_github("STATWORX/bounceR")
+
+# source it
+library(bounceR)
+```
+
+If you find any bugs or spot anything that is not super convenient, just open an issue.
+<div class="issues">
+  <div style="margin-right:0px;margin-top:0px;">
+    <img style="margin:0px; box-shadow:none;" width="1400", src="figures/issues.png"></img>
+  </div>
+</div>
+
+About Our Package: Content
+========================================================
+The package contains a variety of useful functions surrounding the topic of feature selection, such as:
+
+  * Convenience:
+    + <code><font color="blue">sim_data</font></code>: <SPAN STYLE="font-size:70%">a function simulating regression and classification data, where the true feature space is known</SPAN>
+  * Filtering:
+    + <code><font color="blue">featureFiltering</font></code>: <SPAN STYLE="font-size:70%">a function implementing several popular filter methods for feature selection</SPAN>
+  * Wrapper:
+    + <code><font color="blue">featureSelection</font></code>: <SPAN STYLE="font-size:70%">a function implementing our home grown algorithm for feature selection</SPAN>
+  * Methods:
+    + <code><font color="blue">print.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 priniting method for the object class "sel_obj"</SPAN>
+    + <code><font color="blue">plot.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 ploting method for the object class "sel_obj"</SPAN>
+    + <code><font color="blue">summary.sel_obj</font></code>: <SPAN STYLE="font-size:70%">an S4 summary method for the object class "sel_obj"</SPAN>
+    + <code><font color="blue">builder</font></code>: <SPAN STYLE="font-size:70%"> method to extract a formula with n features from a "sel_obj"</SPAN>
 
 About The End
 ========================================================
