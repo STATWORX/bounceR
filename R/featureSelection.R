@@ -172,15 +172,16 @@ if(length(feature_names) == 0){
 
   # set random seed
   set.seed(i * selection[["n_rounds"]])
+  
+  # freq vector
+  freq_vec <- sample(seq(from = 0, to = 1, by = 0.001),
+                 length(feature_names),
+                 replace = T)
 
   # intialize random stability matrix
   stability_matrix <- data.frame(feature = feature_names,
-                                 freq = sample(seq(from = 0, to = 1, by = 0.001),
-                                                   length(feature_names),
-                                                   replace = T),
-                                 freq_original = sample(seq(from = 0, to = 1, by = 0.001),
-                                                        length(feature_names),
-                                                         replace = T))
+                                 freq = freq_vec,
+                                 freq_original = freq_vec)
 
   # iterate over models
   for(ii in seq(selection[["n_mods"]])){
@@ -189,7 +190,7 @@ if(length(feature_names) == 0){
     set.seed(i + ii)
 
     # check if there is still something left
-    if(class("df_mirrored") != "data.frame") break
+    if(class(df_mirrored) != "data.frame") break
 
     # failsafe if df_mirrored gets to small
     if(selection[["p"]] >= ncol(df_mirrored)) selection[["p"]] <- ncol(df_mirrored) - 1
@@ -327,7 +328,8 @@ stability_matrix$freq <- (stability_matrix$freq - min(stability_matrix$freq)) /
 # return
 return(stability_matrix)
 
-})
+}
+)
 
 # time diff for ensemble
 time_diff <- diff(c(starting_time, Sys.time()))
@@ -347,7 +349,7 @@ important_features <- important_features %>%
     as.data.frame() %>%
     dplyr::arrange(dplyr::desc(freq)) %>%
     dplyr::as_tibble() %>%
-    dplyr::filter(!feature %in% c("(Intercept"))
+    dplyr::filter(!feature %in% c("Intercept"))
 
 # rescale
 important_features$freq <- (important_features$freq - min(important_features$freq)) /
