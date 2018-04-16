@@ -57,8 +57,8 @@ featureSelection <- function(data,
 # input checks
 if(missing(data)) stop("I cannot find your data")
 if(missing(target)) stop("I cannot find your target")
-if(!target %in% names(data)) stop("The data does not contain the target!")
 if(mode(target) != "character") stop("Just give me the name of the target column")
+if(!target %in% names(data)) stop("The data does not contain the target!")
 if(!is.null(index) & mode(index) != "character") stop("Just give me the name of the index column")
 if(!bootstrap %in% c("none", "regular", "moving")) stop("You can only choose either none, regular, or moving")
 if(!early_stopping %in% c("none", "aic", "cv")) stop("You can only choose either none, aic, or cv")
