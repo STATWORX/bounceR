@@ -29,7 +29,7 @@ mbb <- function(data,
                 seed = 1){
 
   # calculate optimal block length
-  opt_block_length <- round(b.star(data[, c(target)])[2])
+  opt_block_length <- round(np::b.star(data[, c(target)])[2])
 
   # loop over all observations
   for(i in seq(nrow(data))){

@@ -12,17 +12,18 @@ Description: This package entails both, wrapper and filter methods for automated
              feature spaces, yet disproportionally little observations..
 Maintainer: Lukas Stroemsdoerfer <lukas.stroemsdoerfer@statworx.com>
 Depends: R (>= 3.4.3)
-Imports: methods, 
-         dplyr,
-         reshape2, 
-         ggplot2, 
-         mRMRe,
-         np,
-         mboost,
-         strucchange, 
-         doMC,
-         doParallel,
-         foreach
+Imports:
+    purrr,
+    furrr,
+    parallel,
+    mboost,
+    strucchange,
+    np,
+    reshape2,
+    ggplot2,
+    mRMRe,
+    dplyr,
+    future
 Namespace: bounceR
 License: MIT + file LICENSE
 Encoding: UTF-8

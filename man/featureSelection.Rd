@@ -4,9 +4,10 @@
 \alias{featureSelection}
 \title{Automated Feature Selection for Machine Learning Models with Boosting Ensembles}
 \usage{
-featureSelection(data, target, index = NULL, selection = selectionControl(),
-  bootstrap = "none", boosting = boostingControl(),
-  early_stopping = "none", n_cores = 1, verbose = TRUE)
+featureSelection(data, target, index = NULL, max_time = "10 min",
+  selection = selectionControl(), bootstrap = "none",
+  boosting = boostingControl(), early_stopping = "none", parallel = TRUE,
+  verbose = TRUE)
 }
 \arguments{
 \item{data}{a dataset containing the target, all features, and potentially a time index}
@@ -14,6 +15,8 @@ featureSelection(data, target, index = NULL, selection = selectionControl(),
 \item{target}{a string with the column name of the target}
 
 \item{index}{a string with the column name of the index}
+
+\item{max_time}{a string taking the maximum time the user is willing to wait in minutes}
 
 \item{selection}{takes the return from \code{\link{selectionControl}}}
 
@@ -23,7 +26,7 @@ featureSelection(data, target, index = NULL, selection = selectionControl(),
 
 \item{early_stopping}{a string giving the method for early stopping}
 
-\item{n_cores}{an integer giving the amount of cores}
+\item{parallel}{a logical taking TRUE or FALSE}
 
 \item{verbose}{a logical indicating whether logging info is displayed}
 }
@@ -55,11 +58,24 @@ test_df <- sim_data()
 # Genetic Boosting Ensemble
 test_ge <- featureSelection(data = test_df,
                             target = "y",
-                            selection = selectionControl(n_rounds = 10,
-                                                         n_mods = 100,
-                                                         p = 30,
-                                                         penalty = 0.3,
-                                                         reward = 0.2),
+                            max_time = "10 min"
+                            selection = selectionControl(n_rounds = NULL,
+                                                         n_mods = NULL,
+                                                         p = NULL,
+                                                         penalty = NULL,
+                                                         reward = NULL),
+                            bootstrap = "regular",
+                            early_stopping = "none",
+                            n_cores = 1)
+                            
+test_ge <- featureSelection(data = test_df,
+                            target = "y",
+                            max_time = NULL,
+                            selection = selectionControl(n_rounds = NULL,
+                                                         n_mods = NULL,
+                                                         p = NULL,
+                                                         penalty = NULL,
+                                                         reward = NULL),
                             bootstrap = "regular",
                             early_stopping = "none",
                             n_cores = 1)
