@@ -11,10 +11,9 @@
 #' test_df <- sim_data()
 #'
 #' # feature selection
-#' sel <- featureSelection(df = test_df,
+#' sel <- featureSelection(data = test_df,
 #'                         target = "y",
 #'                         index = NULL,
-#'                         method = "randomboost",
 #'                         n_cores = 1)
 #' # extract one feature
 #' form <- builder(object = sel, n_features = 1)
@@ -25,15 +24,15 @@ builder <- function(object, n_features = 5){
             # check
             if(!class(object) == "sel_obj") stop(paste0("This function only works with objects of type ",
                                                         sQuote("sel_obj"), "!"))
-            if(n_features > length(pull(object[["stability"]][, "feature"]))){
-              n_features <- length(pull(object[["stability"]][, "feature"]))
+            if(n_features > length(pull(object@stability[, "feature"]))){
+              n_features <- length(pull(object@stability[, "feature"]))
               warning(paste0("Seems like you chose too many features. Try to reduce ",
                              sQuote("n_features"), ". Using all features: ",
                              n_features))
             }
 
             # pull out the features
-            form <- as.formula(paste(object[["setup"]][["target"]], "~", paste(pull(object[["stability"]][, "feature"][1:n_features, ]), collapse = "+"), sep = ""))
+            form <- as.formula(paste(object@setup[["target"]], "~", paste(pull(object@stability[, "feature"][1:n_features, ]), collapse = "+"), sep = ""))
 
             # return
             return(form)

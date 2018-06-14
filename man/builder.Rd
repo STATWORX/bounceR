@@ -25,10 +25,9 @@ This function allows you to build custom estimation functions from a \linkS4clas
 test_df <- sim_data()
 
 # feature selection
-sel <- featureSelection(df = test_df,
+sel <- featureSelection(data = test_df,
                         target = "y",
                         index = NULL,
-                        method = "randomboost",
                         n_cores = 1)
 # extract one feature
 form <- builder(object = sel, n_features = 1)
