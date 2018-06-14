@@ -73,7 +73,7 @@ You can install the development version from Github.
     test_ge <- featureSelection(data = train_df,
                                 target = "y",
                                 max_time = "10 mins",
-                                bootstraps = "regular",
+                                bootstrap = "regular",
                                 early_stopping = "none",
                                 parallel = TRUE)
 
