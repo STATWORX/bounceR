@@ -138,7 +138,7 @@ geneticBoost <- function(iteration,
         if(is.null(model)){
 
             # print warning
-            warning(paste("In iteration", i, "I could not fit a model in round", ii))
+            warning(paste("In iteration", i, "I could not fit a model in round", iteration))
 
             # return
             next
