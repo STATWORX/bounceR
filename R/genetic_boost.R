@@ -105,7 +105,7 @@ geneticBoost <- function(iteration,
 
             # moving block bootstrap
             df_mirrored_model <- mbb(data = df_mirrored[, names(df_mirrored) %in% c(target, sample(names(df_mirrored)[!names(df_mirrored) %in% c(target)], p, replace = F))],
-                                     target = tagret,
+                                     target = target,
                                      seed = (i^2))
 
         }
