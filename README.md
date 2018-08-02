@@ -65,7 +65,7 @@ You can install the development version from Github.
                                                              reward = 0.2),
                                 bootstrap = "regular",
                                 early_stopping = "none",
-                                parallel = TRUE)
+                                cores = 1)
                                 
     # If you are not sure how long it 100 n_rounds might take and you'd rather set a specific time,
     # you can use the max_time argument
@@ -75,7 +75,7 @@ You can install the development version from Github.
                                 max_time = "10 mins",
                                 bootstrap = "regular",
                                 early_stopping = "none",
-                                parallel = TRUE)
+                                cores = 8)
 
 
 ## For more information
