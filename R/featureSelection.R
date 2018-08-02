@@ -33,7 +33,7 @@
 #' # Genetic Boosting Ensemble
 #' test_ge <- featureSelection(data = test_df,
 #'                             target = "y",
-#'                             max_time = "10 min"
+#'                             max_time = "10 min",
 #'                             selection = selectionControl(n_rounds = NULL,
 #'                                                          n_mods = NULL,
 #'                                                          p = NULL,
@@ -41,7 +41,7 @@
 #'                                                          reward = NULL),
 #'                             bootstrap = "regular",
 #'                             early_stopping = "none",
-#'                             n_cores = 1)
+#'                             cores = 4)
 #'                             
 #' test_ge <- featureSelection(data = test_df,
 #'                             target = "y",
@@ -53,7 +53,7 @@
 #'                                                          reward = NULL),
 #'                             bootstrap = "regular",
 #'                             early_stopping = "none",
-#'                             n_cores = 1)
+#'                             cores = 7)
 #' }
 #' @export
 featureSelection <- function(data,
@@ -64,7 +64,7 @@ featureSelection <- function(data,
                              bootstrap = "none",
                              boosting = boostingControl(),
                              early_stopping = "none",
-                             parallel = TRUE,
+                             cores = NULL,
                              verbose = TRUE){
 
 # SETUP -------------------------------------------------------------------
@@ -135,18 +135,11 @@ if(!is.null(max_time)){
 
 # BACKEND -----------------------------------------------------------------
 # check if parallel
-if(parallel){
-  
-  # detect the number of cores
-  cores <- parallel::detectCores()
+# set workers
+if(is.null(cores)) cores <- parallel::detectCores()
 
-  # set parallization plan
-  future::plan(multiprocess)
-
-}
-
-# if not parallel
-cores <- 1
+# enable parallel processing
+future::plan(multiprocess, workers = cores)
 
 # GENETICBOOST ------------------------------------------------------------
 # calculate the optimal number of n_rounds

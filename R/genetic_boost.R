@@ -23,7 +23,7 @@ geneticBoost <- function(iteration,
     if(is.null(selection[["n_rounds"]])) selection[["n_rounds"]] <- floor((1 + ncol(data)/nrow(data)) * 100)
 
     # set default: n_mods
-    if(is.null(selection[["n_mods"]])) selection[["n_mods"]] <- floor((1 + ncol(data)/nrow(data)) * 1000)
+    if(is.null(selection[["n_mods"]])) selection[["n_mods"]] <- floor((1 + ncol(data)/nrow(data)) * 5000)
 
     # set default: p
     if(is.null(selection[["p"]])) selection[["p"]] <- floor(sqrt(sqrt(ncol(data) * (1 + (nrow(data)/sqrt(ncol(data)))))))
